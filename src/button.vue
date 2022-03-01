@@ -1,8 +1,6 @@
 <template>
-  <button class="g-button" :class="{[`icon-${iconPosition}`]: true}">
-    <svg v-if="icon" class="icon" aria-hidden="true">
-      <use :xlink:href="`#i-${icon}`"></use>
-    </svg>
+  <button class="wu-button" :class="{[`icon-${iconPosition}`]: true}">
+    <wu-icon v-if="icon" :name="icon"></wu-icon>
     <div class="content">
       <slot/>
     </div>
@@ -25,7 +23,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.g-button {
+.wu-button {
   font-size: var(--font-size);
   height: var(--button-height);
   padding: 0 1em;
