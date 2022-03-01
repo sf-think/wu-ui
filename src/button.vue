@@ -1,6 +1,7 @@
 <template>
   <button class="wu-button" :class="{[`icon-${iconPosition}`]: true}">
-    <wu-icon v-if="icon" :name="icon"></wu-icon>
+    <wu-icon class="loading" v-if="icon" name="loading"/>
+    <wu-icon v-if="icon" :name="icon"/>
     <div class="content">
       <slot/>
     </div>
@@ -14,7 +15,7 @@ export default {
     iconPosition: {
       type: String,
       default: 'left',
-      validator (value) {
+      validator(value) {
         return ['left', 'right'].indexOf(value) !== -1
       }
     }
@@ -23,6 +24,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+
+}
+
 .wu-button {
   font-size: var(--font-size);
   height: var(--button-height);
@@ -34,6 +45,7 @@ export default {
   justify-content: center;
   align-items: center;
   vertical-align: middle;
+
   &:hover {
     border-color: var(--border-color-hover);
   }
@@ -59,12 +71,16 @@ export default {
     > .icon {
       order: 2;
     }
+
     > .content {
       order: 1;
       margin-left: 0;
       margin-right: 0.1em;
-
     }
+  }
+
+  > .loading {
+    animation: spin 1s infinite linear;
   }
 }
 
