@@ -1,7 +1,7 @@
 <template>
-  <button class="wu-button" :class="{[`icon-${iconPosition}`]: true}">
-    <wu-icon class="loading" v-if="icon" name="loading"/>
-    <wu-icon v-if="icon" :name="icon"/>
+  <button class="wu-button" :class="{[`icon-${iconPosition}`]: true}" @click="$emit('click')">
+    <wu-icon class="loading" v-if="loading" name="loading"/>
+    <wu-icon v-if="icon && !loading" :name="icon"/>
     <div class="content">
       <slot/>
     </div>
@@ -18,7 +18,8 @@ export default {
       validator(value) {
         return ['left', 'right'].indexOf(value) !== -1
       }
-    }
+    },
+    loading: Boolean
   }
 }
 </script>
