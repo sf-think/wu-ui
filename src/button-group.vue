@@ -5,7 +5,16 @@
 </template>
 
 <script>
-export default {}
+export default {
+  mounted() {
+    for(let node of this.$el.children) {
+      let name = node.nodeName.toLowerCase()
+      if(name !== 'button') {
+        console.warn(`wu-button-group 组件里面应放置 wu-button 组件，而不是 ${name}`)
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
