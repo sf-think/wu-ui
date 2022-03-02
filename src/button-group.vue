@@ -7,9 +7,9 @@
 <script>
 export default {
   mounted() {
-    for(let node of this.$el.children) {
+    for (let node of this.$el.children) {
       let name = node.nodeName.toLowerCase()
-      if(name !== 'button') {
+      if (name !== 'button') {
         console.warn(`wu-button-group 组件里面应放置 wu-button 组件，而不是 ${name}`)
       }
     }
@@ -23,15 +23,22 @@ export default {
   vertical-align: middle;
 
   > .wu-button {
-    margin-right: -1px;
+    border-radius: 0;
+
+    &:not(:first-child) {
+      margin-left: -1px;
+    }
+
     &:first-child {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+      border-top-left-radius: var(--border-radius);
+      border-bottom-left-radius: var(--border-radius);
     }
+
     &:last-child {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+      border-top-right-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
     }
+
     &:hover {
       position: relative;
       z-index: 1;
